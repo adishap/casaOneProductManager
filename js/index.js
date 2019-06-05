@@ -87,6 +87,26 @@
         }
     }
 
+    function addDatePicker() {
+        $("#date__billing").datepicker();
+        $("#date__billing").datepicker("setDate", order.orderDate);
+        $("#date__billing").datepicker('option', 'onSelect', function() {
+            order.orderDate = $(this).val();
+            $("#date__shipping").datepicker('option','minDate', new Date(order.orderDate));
+            if (order.orderDate > order.deliveryDate) {
+                $("#date__shipping").datepicker('setDate', order.orderDate);
+                order.deliveryDate = order.orderDate;
+            }
+        });
+    
+        $("#date__shipping").datepicker();
+        $("#date__shipping").datepicker('setDate', order.deliveryDate);
+        $("#date__shipping").datepicker('option','minDate', new Date(order.orderDate));
+        $("#date__billing").datepicker('option', 'onSelect', function() {
+            order.deliveryDate = $(this).val();
+        });
+    }
+
     function fillAddressInfo() {
         firstNameBillingAddressEl.value = order.billingAddress.firstName;
         lastNameBillingAddressEl.value = order.billingAddress.lastName;
@@ -104,6 +124,8 @@
         stateShippingAddressEl.value = order.shippingAddress.state;
         zipcodeShippingAddressEl.value = order.shippingAddress.zipcode;
         countryShippingAddressEl.value = order.shippingAddress.country;
+
+        addDatePicker();
     }
 
     function fillProductDetails() {
@@ -248,5 +270,6 @@
         }
 
     });
+
     init();
 })();
