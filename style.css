@@ -60,6 +60,10 @@ h3 {
     width: 10%;
 }
 
+.qty-wrapper input {
+    width: 70%;
+}
+
 .unit-price-wrapper {
     width: 12%;
 }
@@ -111,4 +115,28 @@ h3 {
 
 .row__save-order {
     justify-content: flex-end;
+}
+
+.add-btn {
+    margin-left: 30px;
+    width: 100px;
+    color: #fff;
+    background-color: #337ab7;
+    border: 0px;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #2e6da4;
+}
+
+.add-product {
+    display: block;
+    width: 200px;
+    margin: 10px 0;
+    padding: 10px 4px;
+    border-radius: 4px;
+    border: 1px solid #cecece;
 }

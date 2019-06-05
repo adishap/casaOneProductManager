@@ -1,4 +1,4 @@
-var product = [
+var products = [
   {
     id: 'p1',
     name: 'Chair',
@@ -21,79 +21,40 @@ var product = [
   }
 ];
 
-var order = [
-  {
-    id: 'o1',
-    products: [
-      {
-        pId: 'p1',
-        quantity: 4,
-        notes: '',
-      },
-      {
-        pId: 'p2',
-        quantity: 1,
-        notes: '',
-      },
-    ],
-    orderDate: '',
-    deliveryDate: '',
-    billingAddress: {
-        firstName: 'Adam',
-        lastName: 'Greens',
-        addressLine1: '101, Main Str',
-        addressLine2: 'Brown Bakers',
-        city: 'Albani',
-        state: 'New York',
-        country: 'US',
-        zipcode: '456783',
+var order = {
+  id: 'o1',
+  products: [
+    {
+      pId: 'p1',
+      quantity: 4,
+      notes: 'fgfg',
     },
-    shippingAddress: {
-        firstName: 'Adam',
-        lastName: 'Greens',
-        addressLine1: '101, Main Str',
-        addressLine2: 'Brown Bakers',
-        city: 'Albani',
-        state: 'New York',
-        country: 'US',
-        zipcode: '456783',
+    {
+      pId: 'p2',
+      quantity: 1,
+      notes: '',
     },
+  ],
+  orderDate: '',
+  deliveryDate: '',
+  billingAddress: {
+    firstName: 'Adam',
+    lastName: 'Greens',
+    addressLine1: '101, Main Str',
+    addressLine2: 'Brown Bakers',
+    city: 'Albani',
+    state: 'New York',
+    country: 'US',
+    zipcode: '456783',
   },
-  {
-    id: 'o2',
-    products: [
-      {
-        pId: 'p3',
-        quantity: 5,
-        notes: 'Without stand',
-      },
-      {
-        pId: 'p2',
-        quantity: 10,
-        notes: '',
-      },
-    ],
-    orderDate: '',
-    deliveryDate: '',
-    billingAddress: {
-        firstName: 'Adam',
-        lastName: 'Greens',
-        addressLine1: '101, Main Str',
-        addressLine2: 'Brown Bakers',
-        city: 'Albani',
-        state: 'New York',
-        country: 'US',
-        zipcode: '456783',
-    },
-    shippingAddress: {
-        firstName: 'Adam',
-        lastName: 'Greens',
-        addressLine1: '101, Main Str',
-        addressLine2: 'Brown Bakers',
-        city: 'Albani',
-        state: 'New York',
-        country: 'US',
-        zipcode: '456783',
-    },
-  }
-];
+  shippingAddress: {
+    firstName: 'Adam',
+    lastName: 'Greens',
+    addressLine1: '101, Main Str',
+    addressLine2: 'Brown Bakers',
+    city: 'Albani',
+    state: 'New York',
+    country: 'US',
+    zipcode: '456783',
+  },
+};
