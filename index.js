@@ -45,6 +45,48 @@
         }
     }
 
+    function validateOrder() {
+        var validate = false;
+        if (!order.products.length) {
+            return {
+                validate,
+                error: "No products present in order",
+            }
+        }
+
+        if (!(order.billingAddress.firstName && order.billingAddress.addressLine1 && order.billingAddress.city && order.billingAddress.state && order.billingAddress.country)) {
+            return {
+                validate,
+                error: "Billing Address incomplete.",
+            }
+        }
+
+        if (!(order.shippingAddress.firstName && order.shippingAddress.addressLine1 && order.shippingAddress.city && order.shippingAddress.state && order.shippingAddress.country)) {
+            return {
+                validate,
+                error: "Shipping Address incomplete.",
+            }
+        }
+
+        orderQuantityErr = false;
+        order.products.forEach(prod => {
+           if(prod.quantity <= 0) {
+               orderQuantityErr = true;
+           }
+        });
+
+        if (orderQuantityErr) {
+            return {
+                validate,
+                error: "Please check product quatity before updating order",
+            }
+        }
+
+        return {
+            validate: true
+        }
+    }
+
     function fillAddressInfo() {
         firstNameBillingAddressEl.value = order.billingAddress.firstName;
         lastNameBillingAddressEl.value = order.billingAddress.lastName;
@@ -52,16 +94,16 @@
         addLine2BillingAddressEl.value = order.billingAddress.addressLine2;
         cityBillingAddressEl.value = order.billingAddress.city;
         stateBillingAddressEl.value = order.billingAddress.state;
-        zipcodeBillingAddressEl.value = order.billingAddress.country;
-        countryBillingAddressEl.value = order.billingAddress.zipcode;
+        zipcodeBillingAddressEl.value = order.billingAddress.zipcode;
+        countryBillingAddressEl.value = order.billingAddress.country;
         firstNameShippingAddressEl.value = order.shippingAddress.firstName;
         lastNameShippingAddressEl.value = order.shippingAddress.lastName;
         addLine1ShippingAddressEl.value = order.shippingAddress.addressLine1;
         addLine2ShippingAddressEl.value = order.shippingAddress.addressLine2;
         cityShippingAddressEl.value = order.shippingAddress.city;
         stateShippingAddressEl.value = order.shippingAddress.state;
-        zipcodeShippingAddressEl.value = order.shippingAddress.country;
-        countryShippingAddressEl.value = order.shippingAddress.zipcode;
+        zipcodeShippingAddressEl.value = order.shippingAddress.zipcode;
+        countryShippingAddressEl.value = order.shippingAddress.country;
     }
 
     function fillProductDetails() {
@@ -193,5 +235,18 @@
         });
     });
 
+    document.querySelector('.save-btn').addEventListener('click', e => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (validateOrder().validate) {
+            document.querySelector('.error-messge').innerHTML = '';
+            console.log('Order updated');
+            console.log(order);
+        } else {
+            document.querySelector('.error-messge').innerHTML = validateOrder().error;
+        }
+
+    });
     init();
 })();

@@ -144,3 +144,8 @@ h3 {
 .hide {
     display: none;
 }
+
+.error-messge {
+    color: #d9534f;
+    margin-right: 30px;
+}
