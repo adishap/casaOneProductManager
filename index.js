@@ -28,15 +28,21 @@
     }
 
     function updateAddProductList() {
-        products.forEach(product => {
-            if(!(order.products.find(p => p.pId === product.id))){
-                var optionEl = document.createElement('option');
-                optionEl.setAttribute('value', product.id);
-                optionEl.innerHTML = product.name;
-
-                addProductSelect.appendChild(optionEl);
-            }
-        });
+        if (order.products.length === products.length) {
+            addProductRow.classList.add('hide');
+        } else {
+            addProductRow.classList.remove('hide');
+            addProductSelect.innerHTML = '';
+            products.forEach(product => {
+                if(!(order.products.find(p => p.pId === product.id))){
+                    var optionEl = document.createElement('option');
+                    optionEl.setAttribute('value', product.id);
+                    optionEl.innerHTML = product.name;
+                    
+                    addProductSelect.appendChild(optionEl);
+                }
+            });
+        }
     }
 
     function fillAddressInfo() {
@@ -125,6 +131,17 @@
         fillOrderDetails();
         updateAddProductList();
     }
+
+    addProductBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        addProductEl(addProductSelect.value, 1, '');
+        order.products.push({
+            pId: addProductSelect.value,
+            quantity: 1,
+            notes: '',
+        });
+        updateAddProductList();
+    });
 
     init();
 })();
