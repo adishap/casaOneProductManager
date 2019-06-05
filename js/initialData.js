@@ -35,8 +35,8 @@ var order = {
       notes: '',
     },
   ],
-  orderDate: '',
-  deliveryDate: '',
+  orderDate: "06/04/2019",
+  deliveryDate: "06/27/2019",
   billingAddress: {
     firstName: 'Adam',
     lastName: 'Greens',
