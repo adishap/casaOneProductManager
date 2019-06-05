@@ -65,6 +65,7 @@
     }
 
     function fillProductDetails() {
+        productsListEl.innerHTML = '';
         order.products.forEach(prod => {
             addProductEl(prod.pId, prod.quantity, prod.notes);
         });
@@ -73,6 +74,7 @@
     function addProductEl(pid, qty, notes) {
         var row = document.createElement("div");
         row.setAttribute("class", "row");
+        row.setAttribute("data-id", pid);
 
         var productIdEl = document.createElement("div");
         productIdEl.setAttribute("class", "product-id-wrapper");
@@ -87,9 +89,9 @@
         var qtyEl = document.createElement("div");
         qtyEl.setAttribute("class", "qty-wrapper");
         var qtyInputEl = document.createElement("input");
-            qtyInputEl.setAttribute("value", qty);
-            qtyInputEl.setAttribute("min", 1);
-            qtyInputEl.setAttribute("type", "number");
+        qtyInputEl.setAttribute("value", qty);
+        qtyInputEl.setAttribute("min", 1);
+        qtyInputEl.setAttribute("type", "number");
         qtyEl.appendChild(qtyInputEl);
         row.appendChild(qtyEl);
 
@@ -120,6 +122,23 @@
         row.appendChild(deleteEl);
 
         productsListEl.appendChild(row);
+
+        deleteEl.addEventListener('click', (e) => {
+            e.preventDefault();
+            order.products = order.products.filter((p) => p.pId !== pid);
+            updateAddProductList();
+            fillProductDetails();
+        });
+
+        qtyInputEl.addEventListener('blur', () => {
+            totalPriceEl.innerHTML = getProduct(pid).price * qtyInputEl.value;
+            order.products = order.products.filter((p) => p.pId !== pid);
+            order.products.push({
+                pId: pid,
+                quantity: qtyInputEl.value,
+                notes: notes,
+            });
+        });
     }
 
     function fillOrderDetails() {
