@@ -243,8 +243,8 @@
             order.billingAddress.addressLine2 = addLine2BillingAddressEl.value;
             order.billingAddress.city = cityBillingAddressEl.value;
             order.billingAddress.state = stateBillingAddressEl.value;
-            order.billingAddress.country = zipcodeBillingAddressEl.value;
-            order.billingAddress.zipcode = countryBillingAddressEl.value;
+            order.billingAddress.zipcode = zipcodeBillingAddressEl.value;
+            order.billingAddress.country = countryBillingAddressEl.value;
 
             order.shippingAddress.firstName = firstNameShippingAddressEl.value;
             order.shippingAddress.lastName = lastNameShippingAddressEl.value;
@@ -252,8 +252,8 @@
             order.shippingAddress.addressLine2 = addLine2ShippingAddressEl.value;
             order.shippingAddress.city = cityShippingAddressEl.value;
             order.shippingAddress.state = stateShippingAddressEl.value;
-            order.shippingAddress.country = zipcodeShippingAddressEl.value;
-            order.shippingAddress.zipcode = countryShippingAddressEl.value;
+            order.shippingAddress.zipcode = zipcodeShippingAddressEl.value;
+            order.shippingAddress.country = countryShippingAddressEl.value;
         });
     });
 
